@@ -36,4 +36,4 @@ download_but=driver.find_element(By.XPATH,'//*[@id="wrap"]/div[2]/form/div/div/d
 download_but.send_keys(Keys.RETURN)
 
 # Fechar o navegador
-driver.quit()
+#driver.quit()
