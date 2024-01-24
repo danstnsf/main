@@ -32,7 +32,8 @@ campo_inic.send_keys(dt_inic)
 campo_fim.send_keys(dt_final)
 
 # Submeter o formulário (opcional, dependendo do seu caso)
-#campo_mensagem.send_keys(Keys.RETURN)
+download_but=driver.find_element(By.NAME,'Download')
+download_but.send_keys(Keys.RETURN)
 
 # Fechar o navegador
 #driver.quit()
