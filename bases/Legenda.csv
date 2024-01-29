@@ -1,0 +1,6 @@
+n;recep;transm;risco
+0;Desfavorável;Nenhuma evidência;-
+1;Favorável;Possível;Baixo Risco
+2;Favorável (2 semanas);Provável;Atenção
+3;Favorável (3+ semanas);Altamente provável;Transmissão Sustentada
+4;-;-;Incidência Alta
