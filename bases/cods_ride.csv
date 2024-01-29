@@ -1,35 +1,35 @@
-cod;local
-520017;Agua Fria de Goias
-520060;Alto Paraiso de Goias
-520400;Cabeceiras
-520790;Flores de Goias
-520800;Formosa
-521760;Planaltina
-522000;Sao Joao d'Alianca
-522220;Vila Boa
-520025;Aguas Lindas de Goias
-520549;Cidade Ocidental
-520620;Cristalina
-521250;Luziania
-521523;Novo Gama
-521975;Santo Antonio do Descoberto
-522185;Valparaiso de Goias
-520530;Cavalcante
-520080;Alvorada do Norte
-522068;Simolandia
-520010;Abadiania
-520030;Alexania
-520551;Cocalzinho de Goias
-500320;Corumba de Goias
-521730;Pirenopolis
-290323;Barro Alto
-520860;Goianesia
-521305;Mimoso de Goias
-521560;Padre Bernardo
-522230;Vila Propicio
-521460;Niquelandia
-310450;Arinos
-310930;Buritis
-310945;Cabeceira Grande
-317040;Unai
-530010;Brasilia
+cod;local;Latitude;Longitude
+520017;Agua Fria de Goias;-14,9796604;-47,78278101
+520060;Alto Paraiso de Goias;-14,1346322;-47,51517332
+520400;Cabeceiras;-15,8039274;-46,92844721
+520790;Flores de Goias;-14,4563285;-47,03826755
+520800;Formosa;-15,5404149;-47,33519308
+521760;Planaltina;-15,6231629;-47,65524399
+522000;Sao Joao d'Alianca;-14,7125354;-47,52067905
+522220;Vila Boa;-15,0367383;-47,05558323
+520025;Aguas Lindas de Goias;-15,7434147;-48,27898649
+520549;Cidade Ocidental;-16,104258;-47,94499421
+520620;Cristalina;-16,771213;-47,61445138
+521250;Luziania;-16,2491736;-47,9300262
+521523;Novo Gama;-16,1024433;-48,05018916
+521975;Santo Antonio do Descoberto;-15,9517138;-48,28012971
+522185;Valparaiso de Goias;-16,0739807;-47,98777218
+520530;Cavalcante;-13,7971329;-47,45787529
+520080;Alvorada do Norte;-14,4833029;-46,49384804
+522068;Simolandia;-14,4716694;-46,48439504
+520010;Abadiania;-16,199359;-48,70657174
+520030;Alexania;-16,0848925;-48,50240027
+520551;Cocalzinho de Goias;-15,778021;-48,771434
+500320;Corumba de Goias;-15,9263343;-48,80993993
+521730;Pirenopolis;-15,8522399;-48,96032873
+290323;Barro Alto;-14,9701976;-48,91657773
+520860;Goianesia;-15,3254111;-49,11904906
+521305;Mimoso de Goias;-15,0579789;-48,16058581
+521560;Padre Bernardo;-15,1693418;-48,28414327
+522230;Vila Propicio;-15,4572538;-48,88528911
+521460;Niquelandia;-14,465108;-48,45735384
+310450;Arinos;-15,9108931;-46,10726542
+310930;Buritis;-15,6284947;-46,42869585
+310945;Cabeceira Grande;-16,030238;-47,08654935
+317040;Unai;-16,3613789;-46,90285642
+530010;Brasilia;-15,7940746;-47,88323536
