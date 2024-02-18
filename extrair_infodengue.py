@@ -41,7 +41,44 @@ def renomear(dir,antigo,novo):
     dir_ant=os.path.join(dir,antigo)
     dir_novo=os.path.join(dir,novo)
     os.rename(dir_ant,dir_novo)
-    
+
+def associar_inmet(dir):
+    arquivos = os.listdir(dir)
+    for arquivo in arquivos:
+        if arquivo.endswith('.csv'):
+            caminho_completo = os.path.join(dir, arquivo)
+            nome=arquivo[:-4]
+            with open(caminho_completo, 'r',newline='') as csv_file:
+                leitor_csv = csv.reader(csv_file,delimiter=';')
+                linhas = list(leitor_csv)
+                linhas[0].insert(0,'cod_estac')
+                for linha in linhas[1:]:
+                    linha.insert(0,nome)
+            with open(caminho_completo, 'w', newline='') as csv_file:
+                escritor_csv = csv.writer(csv_file,delimiter=';')
+                escritor_csv.writerows(linhas)
+
+def criar_base(datadir,outdir):
+    csv_files = [file for file in os.listdir(datadir) if file.endswith('.csv')]
+    pasta_bases=os.path.join(os.getcwd(),outdir)
+    headers_written = False
+    with open(pasta_bases, 'w', newline='') as output_file:
+
+        csv_writer = csv.writer(output_file)
+
+        for csv_file in csv_files:
+            file_path = os.path.join(datadir, csv_file)
+
+            with open(file_path, 'r') as input_file:
+            
+                csv_reader = csv.reader(input_file,delimiter=';')
+
+                if headers_written:
+                    next(csv_reader)
+
+                csv_writer.writerows(csv_reader)
+
+                headers_written = True
 
 class Extrair_dengue:
     def __init__(self):
@@ -67,14 +104,11 @@ class Extrair_dengue:
                 mun=linha[1]
                 self.dict_cidade[cod]=mun
 
-    def puxarinfo(self):
+    def puxarinfo(self,dt_inic,dt_final):
         self.definir_locais()
 
         limpar_pasta(self.pasta_dados)
 
-        dt_inic=input("Insira a data inicial (DDMMAAAA): ")
-        dt_final=input("Insira a data final (DDMMAAAA): ")
-        print("Download iniciado, aguarde...\n")
         self.driver.get(self.url_formulario)
 
         campo_idlocal = self.driver.find_element(By.ID,'geocode-search')            
@@ -92,28 +126,7 @@ class Extrair_dengue:
             download_but.send_keys(Keys.RETURN)
             esperar_download(self.pasta_dados)
         self.driver.quit()
-        print("Download concluido\n")
-    def criar_base(self):
-        csv_files = [file for file in os.listdir(self.pasta_dados) if file.endswith('.csv')]
-        pasta_bases=os.path.join(os.getcwd(),"bases\\infodengue_ride.csv")
-        headers_written = False
-        with open(pasta_bases, 'w', newline='') as output_file:
 
-            csv_writer = csv.writer(output_file)
-
-            for csv_file in csv_files:
-                file_path = os.path.join(self.pasta_dados, csv_file)
-
-                with open(file_path, 'r') as input_file:
-                
-                    csv_reader = csv.reader(input_file)
-
-                    if headers_written:
-                        next(csv_reader)
-
-                    csv_writer.writerows(csv_reader)
-
-                    headers_written = True
 class Extrair_inmet:
     def __init__(self):
         self.url_formulario = 'https://tempo.inmet.gov.br/TabelaEstacoes/A001'
@@ -168,9 +181,26 @@ class Extrair_inmet:
         files_name=ls_sort_csv(self.pasta_dados)
         for i in range(len(ordem)):
             renomear(self.pasta_dados,files_name[i],ordem[i])
+        associar_inmet(self.pasta_dados)
 
-Teste=Extrair_inmet()
-Teste.inic_driver()
-Teste.atualizar_base('01092023','16022024')
-#Teste.criar_base()
+def update_all():
+    inic=input("Insira a data inicial (DDMMAAAA): ")
+    fim=input("Insira a data final (DDMMAAAA): ")
+    print("Download da base infodengue iniciado...\n")
+    Dengue=Extrair_dengue()
+    Dengue.inic_driver()
+    Dengue.puxarinfo(inic,fim)
+    print("Download concluido!\n")
+    print("Consolidando base...\n")
+    criar_base(Dengue.pasta_dados,'bases\\infodengue_ride.csv')
+    print("base consolidada!\n")
+    print("Iniciando download da base INMET...\n")
+    Inmet=Extrair_inmet()
+    Inmet.inic_driver()
+    Inmet.atualizar_base(inic,fim)
+    print("Download concluido!\n")
+    print("Consolidando base...\n")
+    criar_base(Inmet.pasta_dados,'bases\\inmet_ride.csv')
+    print("base consolidada!\n")
 
+update_all()
